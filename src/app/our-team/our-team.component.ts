@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Data } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { DestroyableComponent } from '../shared/destroyable/destroyable.component';
-import { BlockData } from './model/our-team-member.model';
+import { OurTeamSectionData } from './model/our-team-member.model';
 
 @Component({
   selector: 'app-our-team',
   templateUrl: './our-team.component.html',
 })
 export class OurTeamComponent extends DestroyableComponent implements OnInit {
-  public teamSections: BlockData[] = [];
+  public teamSections: OurTeamSectionData[] = [];
 
   constructor(private route: ActivatedRoute) {
     super();

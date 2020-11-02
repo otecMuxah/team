@@ -6,7 +6,7 @@ export interface OurTeamMember {
   phone: string;
 }
 
-export interface BlockData {
+export interface OurTeamSectionData {
   title: string;
   data: OurTeamMember[];
 }

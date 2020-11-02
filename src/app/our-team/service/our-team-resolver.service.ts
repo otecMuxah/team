@@ -1,27 +1,25 @@
 import { Injectable } from '@angular/core';
 import {
-  ActivatedRouteSnapshot,
-  Resolve,
-  RouterStateSnapshot,
+  Resolve
 } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { BlockData, OurTeamMember } from '../model/our-team-member.model';
+import { OurTeamMember, OurTeamSectionData } from '../model/our-team-member.model';
 import { RawOurTeamMember, RawTeamDataBlock } from '../model/raw-team-data.model';
 import { OurTeamService } from './our-team.service';
 
 @Injectable()
-export class OurTeamResolverService implements Resolve<BlockData[]> {
+export class OurTeamResolverService implements Resolve<OurTeamSectionData[]> {
   constructor(public ourTeamService: OurTeamService) {}
 
-  public resolve(): Observable<BlockData[]> {
+  public resolve(): Observable<OurTeamSectionData[]> {
     return this.ourTeamService.getTeamMembers().pipe(
       switchMap((rawTeamMember) => {
-        const listOfBlocks: BlockData[] = [];
+        const listOfBlocks: OurTeamSectionData[] = [];
 
         rawTeamMember.data.forEach((block: RawTeamDataBlock) => {
           const rawMemberList: RawOurTeamMember[] = [];
-          const blockData: BlockData = {} as BlockData;
+          const blockData: OurTeamSectionData = {} as OurTeamSectionData;
           blockData.title = block.attributes.title;
 
           rawMemberList.push(...Object.values(

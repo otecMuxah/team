@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { BlockData } from '../../model/our-team-member.model';
+import { OurTeamSectionData } from '../../model/our-team-member.model';
 
 @Component({
   selector: 'app-our-team-section',
@@ -8,5 +8,5 @@ import { BlockData } from '../../model/our-team-member.model';
 })
 export class OurTeamSectionComponent {
   @Input()
-  public sectionData: BlockData = {} as BlockData;
+  public sectionData: OurTeamSectionData = {} as OurTeamSectionData;
 }
