@@ -1,0 +1,12 @@
+<div
+  class="image"
+  [ngStyle]="{ 'background-image': 'url(' + member.image + ')' }"
+></div>
+<div class="credentials">
+  <h2 class="name">{{ member.name }}</h2>
+  <span class="position">{{ member.position }}</span>
+</div>
+<div class="contacts">
+  <a href="mailto:{{ member.email }}" class="mail">{{ member.email }}</a>
+  <a href="tel:{{ member.phone }}" class="phone">{{ member.phone }}</a>
+</div>

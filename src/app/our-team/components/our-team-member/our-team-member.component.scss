@@ -1,0 +1,28 @@
+@import "/src/app/shared/theme/theme.scss";
+
+.image {
+  width: 400px;
+  height: 400px;
+}
+.name {
+  color: $primary-color;
+  margin-bottom: 0;
+}
+.position,
+.phone {
+  color: $basic-color;
+}
+.mail {
+  color: $secondary-color;
+}
+.mail,
+.phone {
+  text-decoration: none;
+}
+.credentials {
+  margin-bottom: 16px;
+}
+.contacts {
+  display: flex;
+  flex-direction: column;
+}
