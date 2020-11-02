@@ -5,3 +5,8 @@ export interface OurTeamMember {
   email: string;
   phone: string;
 }
+
+export interface BlockData {
+  title: string;
+  data: OurTeamMember[];
+}

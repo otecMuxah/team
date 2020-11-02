@@ -1,4 +1,1 @@
-<h1 class="title">Our team</h1>
-<div class="members-wrapper">
-  <app-our-team-member *ngFor="let member of ourTeam" [member]="member"></app-our-team-member>
-</div>
+<app-our-team-section [sectionData]="section" *ngFor="let section of teamSections"></app-our-team-section>

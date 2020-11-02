@@ -5,6 +5,7 @@ import { OurTeamService } from './service/our-team.service';
 import { Routes, RouterModule } from '@angular/router';
 import { OurTeamResolverService } from './service/our-team-resolver.service';
 import { OurTeamMemberComponent } from './components/our-team-member/our-team-member.component';
+import { OurTeamSectionComponent } from './components/our-team-section/our-team-section.component';
 
 const routes: Routes = [
   {
@@ -16,7 +17,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [CommonModule, RouterModule.forChild(routes)],
-  declarations: [OurTeamComponent, OurTeamMemberComponent],
+  declarations: [OurTeamComponent, OurTeamMemberComponent, OurTeamSectionComponent],
   providers: [OurTeamService, OurTeamResolverService],
 })
 export class OurTeamModule {}

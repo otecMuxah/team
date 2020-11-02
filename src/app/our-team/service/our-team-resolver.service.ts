@@ -6,35 +6,42 @@ import {
 } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { OurTeamMember } from '../model/our-team-member.model';
+import { BlockData, OurTeamMember } from '../model/our-team-member.model';
 import { RawOurTeamMember, RawTeamDataBlock } from '../model/raw-team-data.model';
 import { OurTeamService } from './our-team.service';
 
 @Injectable()
-export class OurTeamResolverService implements Resolve<OurTeamMember[]> {
+export class OurTeamResolverService implements Resolve<BlockData[]> {
   constructor(public ourTeamService: OurTeamService) {}
 
-  public resolve(): Observable<OurTeamMember[]> {
+  public resolve(): Observable<BlockData[]> {
     return this.ourTeamService.getTeamMembers().pipe(
       switchMap((rawTeamMember) => {
-        const rawMemberList: RawOurTeamMember[] = [];
-        let memberList: OurTeamMember[] = [];
+        const listOfBlocks: BlockData[] = [];
+
         rawTeamMember.data.forEach((block: RawTeamDataBlock) => {
-          const values: RawOurTeamMember[] = Object.values(
+          const rawMemberList: RawOurTeamMember[] = [];
+          const blockData: BlockData = {} as BlockData;
+          blockData.title = block.attributes.title;
+
+          rawMemberList.push(...Object.values(
             block.attributes.memberCards
-          );
-          rawMemberList.push(...values);
+          ));
+
+          blockData.data = rawMemberList.map((member) => {
+            return {
+              name: member.block.title,
+              position: member.block.description,
+              image: member.imageUrl.w400,
+              phone: member.block.text,
+              email: member.block.link,
+            } as OurTeamMember;
+          });
+
+          listOfBlocks.push(blockData);
         });
-        memberList = rawMemberList.map((member) => {
-          return {
-            name: member.block.title,
-            position: member.block.description,
-            image: member.imageUrl.w400,
-            phone: member.block.text,
-            email: member.block.link,
-          } as OurTeamMember;
-        });
-        return of(memberList);
+
+        return of(listOfBlocks);
       })
     );
   }
